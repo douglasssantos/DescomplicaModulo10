@@ -33,12 +33,12 @@ function createData(
 
 //Definição do array contendo os dados iniciais da listagem de tarefas
 const initialRows = [
-  createData(1, 'Tarefa 1', 'Descrição da Tarefa 1', '2022-01-01', '2022-01-02', 'Concluída', 'Recurso 1'),
-  createData(2, 'Tarefa 2', 'Descrição da Tarefa 2', '2022-01-03', '2022-01-04', 'Em Andamento', 'Recurso 2'),
-  createData(3, 'Tarefa 3', 'Descrição da Tarefa 3', '2022-01-04', '2022-01-05', 'Em Andamento', 'Recurso 3'),
-  createData(4, 'Tarefa 4', 'Descrição da Tarefa 4', '2022-01-05', '2022-01-06', 'Em Andamento', 'Recurso 4'),
-  createData(5, 'Tarefa 5', 'Descrição da Tarefa 5', '2022-01-06', '2022-01-07', 'Em Andamento', 'Recurso 5'),
-  createData(6, 'Tarefa 6', 'Descrição da Tarefa 6', '2022-01-07', '2022-01-08', 'Aguardando', 'Recurso 6'),
+  createData(156468, 'Conserto de Placa mãe do computador', 'Douglas Santos', '2022-01-01', '2022-01-02', 'Concluída', 'Recurso 1'),
+  createData(987412, 'Troca de Processador', 'Felipe Castro', '2022-01-03', '2022-01-04', 'Em Andamento', 'Recurso 2'),
+  createData(354781, 'Limpeza de CPU + Troca de Pasta Térmica', 'Henrique Moura', '2022-01-04', '2022-01-05', 'Em Andamento', 'Recurso 3'),
+  createData(481213, 'Troca de Processar', 'Marcos Oliveira', '2022-01-05', '2022-01-06', 'Em Andamento', 'Recurso 4'),
+  createData(578415, 'Troca de Memória e HD', 'Henrique Moura', '2022-01-06', '2022-01-07', 'Em Andamento', 'Recurso 5'),
+  createData(612564, 'Substituição de HD por SSD', 'Flávio Siqueira', '2022-01-07', '2022-01-08', 'Aguardando', 'Recurso 6'),
 ];
 
 //Componente ListarTarefa
@@ -88,20 +88,25 @@ const ListarTarefa = () => {
           title="Tarefas"
           subheader="Listagem de Tarefas"
         /> 
-        <CardContent>
+          <CardContent>
+            
+            <div className='div-button-actions'>
+              <CardActions className='button-actions'>
+                <Button size="small" variant="contained" onClick={handleOpen}>Criar Tarefa</Button>
+              </CardActions> 
+            </div>
             <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                 <TableHead>
-                <TableRow>
-                    <TableCell>#</TableCell>
-                    <TableCell>Título</TableCell>
-                    <TableCell align="right">Descrição</TableCell>
-                    <TableCell align="right">Data de Início</TableCell>
-                    <TableCell align="right">Data de Finalização</TableCell>
-                    <TableCell align="right">Status</TableCell>
-                    <TableCell align="right">Recurso</TableCell>
-                    <TableCell align="left"></TableCell>
-                    <TableCell align="left"></TableCell>
+                <TableRow style={{fontWeight:'bold'}}>
+                    <TableCell>#OS</TableCell>
+                    <TableCell>Descrição do Serviço</TableCell>
+                    <TableCell align="center">Técnico Responsavel</TableCell>
+                    <TableCell align="center">Data de Início</TableCell>
+                    <TableCell align="center">Data de Finalização</TableCell>
+                    <TableCell align="center">Status</TableCell>
+                    <TableCell align="center">Recurso</TableCell>
+                    <TableCell align="right">Ações</TableCell>
                 </TableRow>
                 </TableHead>
                 <TableBody>
@@ -116,15 +121,13 @@ const ListarTarefa = () => {
                       <TableCell component="th" scope="row">
                           {row.tituloTarefa}
                       </TableCell>
-                      <TableCell align="right">{row.descricaoTarefa}</TableCell>
-                      <TableCell align="right">{row.inicioTarefa}</TableCell>
-                      <TableCell align="right">{row.fimTarefa}</TableCell>
-                      <TableCell align="right">{row.statusTarefa}</TableCell>
-                      <TableCell align="right">{row.recursoTarefa}</TableCell>
-                      <TableCell align="center">
-                        <Button variant="contained" color="success" onClick={() => handleEditar(row.idTarefa)}><EditIcon fontSize="small" /></Button>            
-                      </TableCell>
-                      <TableCell align="center">
+                      <TableCell align="center">{row.descricaoTarefa}</TableCell>
+                      <TableCell align="center">{row.inicioTarefa}</TableCell>
+                      <TableCell align="center">{row.fimTarefa}</TableCell>
+                      <TableCell align="center">{row.statusTarefa}</TableCell>
+                      <TableCell align="center">{row.recursoTarefa}</TableCell>
+                      <TableCell align="right">
+                        <Button variant="contained" style={{marginRight:5}} color="success" onClick={() => handleEditar(row.idTarefa)}><EditIcon fontSize="small" /></Button>            
                         <Button variant="contained" color="error" onClick={() => handleDeletar(row.idTarefa)}><DeleteIcon fontSize="small" /></Button>            
                       </TableCell>
                     </TableRow>
@@ -133,10 +136,6 @@ const ListarTarefa = () => {
             </Table>
             </TableContainer>
         </CardContent>
-        <CardActions>
-            <Button size="small" variant="contained" onClick={handleOpen}>Criar Tarefa</Button>
-            <Button size="small" variant="outlined">Cancelar</Button>
-      </CardActions> 
     </Card>
     <div>
       <Modal
